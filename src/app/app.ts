@@ -1,10 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpService } from './services/http-service';
+import { interval, switchMap } from 'rxjs';
+import { Measure } from './measure/measure';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Measure],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -12,16 +14,9 @@ export class App implements OnInit {
   protected readonly title = signal('hwInfo');
   private http = inject(HttpService)
   ngOnInit() {
-    console.log("rendered")
-
-    this.http.getInfo().subscribe({
-      next: (data) => {
-        console.log(data)
-      },
-      error: (err) => {
-        console.error(err)
-      }
-    })
+    // interval(1000).pipe(
+    //   switchMap(() => this.http.getInfo())
+    // )
+    //   .subscribe(console.log)
   }
-
 }
