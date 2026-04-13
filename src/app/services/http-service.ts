@@ -9,7 +9,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getInfo() {
-    return this.http.get("/api/data.json")
+    return this.http.get<apiResponse>("/api/data.json")
   }
 
 }

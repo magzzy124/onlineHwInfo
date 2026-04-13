@@ -19,7 +19,7 @@ export class App implements OnInit {
     )
       .subscribe((data) => {
         this.value.set(data)
-        console.log(data)
+        console.log(parseInt(data.Children[0].Children[1].Children[4].Children[0].Value))
       })
   }
 }
