@@ -7,3 +7,9 @@ interface apiResponse {
   ImageURL: string,
   Children: apiResponse[],
 }
+
+interface widgetType {
+  type: "barChart"
+  data: apiResponse
+
+}

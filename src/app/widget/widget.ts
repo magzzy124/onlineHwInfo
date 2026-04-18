@@ -9,5 +9,6 @@ import { BarChart } from "../measurements/bar-chart/bar-chart";
 })
 export class Widget {
   @Input() info: any;
+  @Input() widgetOptions!: widgetType;
 
 }

@@ -1,1 +1,3 @@
-<app-bar-chart [info]="info"/>
+@if(widgetOptions && widgetOptions.type=="barChart"){
+  <app-bar-chart [widgetOptions]="widgetOptions"/>
+}
