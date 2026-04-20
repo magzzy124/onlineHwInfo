@@ -20,6 +20,7 @@ export class App implements OnInit {
   private http = inject(HttpService)
   widgets$: Observable<any[]>;
   value: WritableSignal<apiResponse> = signal<apiResponse>({
+    id: 0,
     SensorId: "",
     Text: "",
     Min: "",
@@ -29,14 +30,6 @@ export class App implements OnInit {
     Children: [],
   });
   ngOnInit() {
-
     this.widgets$ = this.widget.widgets$;
-
-    interval(1000).pipe(
-      switchMap(() => this.http.getInfo())
-    )
-      .subscribe((data) => {
-        this.value.set(data)
-      })
   }
 }

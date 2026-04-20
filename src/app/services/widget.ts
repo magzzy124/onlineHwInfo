@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, from, interval, merge, mergeMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, from, interval, map, merge, mergeMap } from 'rxjs';
 import { HttpService } from './http-service';
 
 @Injectable({
@@ -20,16 +20,31 @@ export class Widget {
 
         return forkJoin(
           widgets.map(widget =>
-            this.httpService.getSensorValue(widget.data.SensorId)
+            this.httpService.getSensorValue(widget.data.SensorId).pipe(map(res => ({
+              sensorId: widget.data.SensorId,
+              ...res
+            })))
           )
         );
       })
     ).subscribe(results => {
-      console.log("ALL DONE:", results);
-      const current = this.widgets.value.map(console.log)
-      // this.widgets.next([results]);
+      const current = this.widgets.value.map((widget) => {
+        const sensorData = results.find((sensor) => sensor.sensorId == widget.data.SensorId)
+        if (sensorData == undefined) return widget;
+        return {
+          ...widget,
+          data: {
+            ...widget.data,
+            Min: String(sensorData.min),
+            Value: String(sensorData.value),
+            Max: String(sensorData.max)
+          }
+        }
+      })
+      this.widgets.next(current);
     });
   }
+
   addWidgets(widget: apiResponse) {
     const current = this.widgets.value;
     const index = current.findIndex((w) => w.data.SensorId == widget.SensorId);

@@ -1,4 +1,5 @@
 interface apiResponse {
+  id: Number,
   SensorId: string,
   Text: string,
   Min: string,

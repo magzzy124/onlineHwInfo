@@ -10,7 +10,12 @@ import { HttpService } from '../services/http-service';
 })
 export class OptionWindow implements OnInit {
   response: WritableSignal<apiResponse | undefined> = signal(undefined);
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {
+    // this.httpService.getInfo().subscribe({
+    //   next: this.response.set,
+    //   error: console.error,
+    // })
+  }
   ngOnInit(): void {
     this.httpService.getInfo().subscribe({
       next: this.response.set,
