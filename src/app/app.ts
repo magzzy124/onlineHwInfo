@@ -20,7 +20,7 @@ export class App implements OnInit {
   private http = inject(HttpService)
   widgets$: Observable<any[]>;
   value: WritableSignal<apiResponse> = signal<apiResponse>({
-    id: 0,
+    SensorId: "",
     Text: "",
     Min: "",
     Value: "",

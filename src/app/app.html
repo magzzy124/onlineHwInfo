@@ -1,6 +1,5 @@
-@for(item of (widgets$ | async) ?? []; track item.id) {
+@for(item of (widgets$ | async) ?? []; track item.data.id) {
   <!-- <h1>{{ item.data.Text }}</h1> -->
   <app-widget [widgetOptions]="item"/>
 }
-<app-widget [info]="value"/>
-<app-option-window [response]="value"/>
+<app-option-window/>

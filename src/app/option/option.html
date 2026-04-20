@@ -1,4 +1,4 @@
-@for(item of children.Children;track item.id){
+@for(item of children.Children;track item.SensorId){
 <h1 (click)="addWidget(item)" [style.marginLeft]="`${offset*50}px`">{{item.Text}}</h1>
 <app-option [children]="item" [offset]="offset+1" />
 }

@@ -14,6 +14,6 @@ export class Option {
   constructor(private widget: Widget) { }
   addWidget(item: apiResponse) {
     if (item.Max != "" && item.Min != "" && item.Value != "")
-      this.widget.addWidgets({ type: "barChart", data: item })
+      this.widget.addWidgets(item)
   }
 }
